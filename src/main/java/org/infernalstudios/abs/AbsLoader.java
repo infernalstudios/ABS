@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.infernalstudios.abs.rules.AdvancementRule;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -25,10 +27,11 @@ public class AbsLoader extends SimpleJsonResourceReloadListener {
 	protected void apply(Map<ResourceLocation, JsonElement> elements, ResourceManager resourceManager, ProfilerFiller profiler) {
 		Abs.abs.clear();
 
-		Map<ResourceLocation, AbsSpawningRules> abs = elements.entrySet().stream().map((entry) -> entry.getValue()).flatMap((element) -> element.getAsJsonObject().entrySet().stream())
+		Map<ResourceLocation, AdvancementRule> abs = elements.entrySet().stream().map((entry) -> entry.getValue()).flatMap((element) -> element.getAsJsonObject().entrySet().stream())
 				.sorted(Comparator.comparingInt((entry) -> entry.getValue().getAsJsonObject().has("priority") ? entry.getValue().getAsJsonObject().get("priority").getAsInt() : 1000))
-				.map((entry) -> Map.entry(entry.getKey(), AbsSpawningRules.decode(entry.getValue().getAsJsonObject()))).sorted((a, b) -> Integer.compare(a.getValue().priority, b.getValue().priority))
-				.collect(Collectors.toMap((entry) -> new ResourceLocation(entry.getKey()), (entry) -> entry.getValue(), AbsSpawningRules::handleMerge, LinkedHashMap::new));
+				.map((entry) -> Map.entry(entry.getKey(), AdvancementRule.decode(entry.getValue().getAsJsonObject())))
+				.sorted((a, b) -> Integer.compare(a.getValue().getPriority(), b.getValue().getPriority()))
+				.collect(Collectors.toMap((entry) -> new ResourceLocation(entry.getKey()), (entry) -> entry.getValue(), AdvancementRule::handleMerge, LinkedHashMap::new));
 
 		Abs.abs.putAll(abs);
 	}

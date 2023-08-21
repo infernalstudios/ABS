@@ -3,6 +3,8 @@ package org.infernalstudios.abs;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.infernalstudios.abs.rules.AdvancementRule;
+import org.infernalstudios.abs.rules.SpawningRules;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -24,7 +26,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod(Abs.MODID)
 public class Abs {
 	public static final String MODID = "abs";
-	public static Map<ResourceLocation, AbsSpawningRules> abs = new HashMap<>();
+	public static Map<ResourceLocation, AdvancementRule> abs = new HashMap<>();
 	public static final Logger LOGGER = LogUtils.getLogger();
 
 	public Abs() {
@@ -43,36 +45,43 @@ public class Abs {
 		Player nearestPlayer = level.getNearestPlayer(TargetingConditions.forNonCombat().range(64.0D), event.getEntity().position().x, event.getEntity().position().y, event.getEntity().position().z);
 
 		if (nearestPlayer != null && nearestPlayer instanceof ServerPlayer serverPlayer) {
-			AbsSpawningRules removedRule = null;
+			AdvancementRule removedRule = null;
+			boolean wantsToDeny = false;
 
 			for (ResourceLocation advancement : abs.keySet()) {
-				AbsSpawningRules rules = abs.get(advancement);
-				boolean wantsToDeny = false;
-				if (rules.excludeRules.types.contains(event.getSpawnReason())) {
-					if ((hasAdvancement(serverPlayer, advancement) ? rules.excludeRules.with : rules.excludeRules.without).contains(Registry.ENTITY_TYPE.getKey(event.getEntity().getType()))) {
+				AdvancementRule advancementRule = abs.get(advancement);
+				SpawningRules rules = hasAdvancement(serverPlayer, advancement) ? advancementRule.getWith() : advancementRule.getWithout();
+
+				if (rules.getExcluded().getTypes().contains(event.getSpawnReason())) {
+					if (rules.getExcluded().getEntities().contains(Registry.ENTITY_TYPE.getKey(event.getEntity().getType()))) {
 						wantsToDeny = true;
 
 						if (removedRule != null) {
-							removedRule = AbsSpawningRules.handleMerge(rules, removedRule);
+							removedRule = AdvancementRule.handleMerge(advancementRule, removedRule);
 						} else {
-							removedRule = rules;
+							removedRule = advancementRule;
 						}
 					}
 				}
+			}
 
-				if (rules.includeRules.types.contains(event.getSpawnReason())) {
-					if ((hasAdvancement(serverPlayer, advancement) ? rules.includeRules.with : rules.includeRules.without).contains(Registry.ENTITY_TYPE.getKey(event.getEntity().getType()))) {
+			for (ResourceLocation advancement : abs.keySet()) {
+				AdvancementRule advancementRule = abs.get(advancement);
+				SpawningRules rules = hasAdvancement(serverPlayer, advancement) ? advancementRule.getWith() : advancementRule.getWithout();
+
+				if (rules.getIncluded().getTypes().contains(event.getSpawnReason())) {
+					if (rules.getIncluded().getEntities().contains(Registry.ENTITY_TYPE.getKey(event.getEntity().getType()))) {
 						if (removedRule != null) {
-							if (rules.getPriority() < removedRule.getPriority()) {
+							if (advancementRule.getPriority() > removedRule.getPriority()) {
 								wantsToDeny = false;
 							}
 						}
 					}
 				}
+			}
 
-				if (wantsToDeny) {
-					event.setResult(Result.DENY);
-				}
+			if (wantsToDeny) {
+				event.setResult(Result.DENY);
 			}
 		}
 	}
