@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="LGPLv3.0"
+[[mods]]
+modId="abs"
+version="${file.jarVersion}"
+displayName="ABS"
+logoFile="abs.png"
+credits="Special thanks to Nekomaster1000"
+authors="LudoCrypt"
+
+description='''
+Advancement Based Spawning
+
+Prove to yourself that you can handle a swarm of mobs only by getting an anchievement worthy of such!
+
+This mod lets you do just that!
+
+Special thanks to Nekomaster1000 for coming up with the idea!
+'''
+[[dependencies.abs]]
+    modId="forge"
+    mandatory=true
+    versionRange="[43,)"
+    ordering="NONE"
+    side="SERVER"
+[[dependencies.abs]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,1.20)"
+    ordering="NONE"
+    side="SERVER"
