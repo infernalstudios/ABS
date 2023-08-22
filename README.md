@@ -73,7 +73,7 @@ If undefined, defaults to `1000`
 
 One or both of these need to be defined for the rule to take effect. Technically, you can include neither, but that does nothing, so, include at least one of them!
 
-##
+<hr>
 
  - ##### Filter Rules
    - ###### Include/Exclude
