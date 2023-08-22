@@ -50,6 +50,12 @@ public class FilterRules {
 				for (JsonElement id : json.get("types").getAsJsonArray()) {
 					types.add(MobSpawnType.valueOf(id.getAsString()));
 				}
+			} else {
+				types.add(MobSpawnType.CHUNK_GENERATION);
+				types.add(MobSpawnType.JOCKEY);
+				types.add(MobSpawnType.NATURAL);
+				types.add(MobSpawnType.REINFORCEMENT);
+				types.add(MobSpawnType.PATROL);
 			}
 		} else {
 			for (JsonElement id : element.getAsJsonArray()) {
