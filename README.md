@@ -76,41 +76,41 @@ One or both of these need to be defined for the rule to take effect. Technically
 ##
 
  - ##### Filter Rules
-   ###### Include/Exclude
-   `include`: What mobs excplicitly will spawn with/without the defined advancement.
+   - ###### Include/Exclude
+     - `include`: What mobs excplicitly will spawn with/without the defined advancement.
    
-   `exclude`: What mobs excplicitly won't spawn with/without the defined advancement.
+     - `exclude`: What mobs excplicitly won't spawn with/without the defined advancement.
 
-   ###### Entities
-   An array of `ResourceLocation/Identifier` entities that will/won't spawn with/without the advancement!
+   - ###### Entities
+     - An array of `ResourceLocation/Identifier` entities that will/won't spawn with/without the advancement!
 
-   ###### Types
-   A list of spawning types that will be checked when passing the rule.
+   - ###### Types
+     - A list of spawning types that will be checked when passing the rule.
 
-   <details>
-     <summary>The list of possible spawning types is as follows: </summary>
-  
-   - `NATURAL` - Mobs that spawn from ticking chunks, ie ambient spawning
-   - `CHUNK_GENERATION` - Mobs that spawn immediately on chunk creation
-   - `SPAWNER` - Mobs that spawn from Spawner blocks
-   - `STRUCTURE` - Mobs that spawn from a structure
-   - `BREEDING` - Mobs that come from bred animals
-   - `MOB_SUMMONED` - Mobs that are summoned for backup, eg Evokers summoning Vex's
-   - `JOCKEY` - Mobs that ride other mobs, eg Skeleton riding a Spider
-   - `EVENT` - Mobs that spawn from an event, eg raids
-   - `CONVERSION` - Mobs that are being converted, eg Zombie Villager converting to Villager
-   - `REINFORCEMENT` - Mobs that are spawned for reinforcement, eg Zombies spawning more Zombies
-   - `TRIGGERED` - Mobs that come from a specific thing, eg Wardens spawning from a shrieker
-   - `BUCKET` - Mobs that come from buckets, eg Bucket of Fish
-   - `SPAWN_EGG` - Mobs that come from a spawn egg
-   - `COMMAND` - Mobs that come from a command, eg /summon
-   - `DISPENSER` - Mobs that come from a dispenser
-   - `PATROL` - Mobs that come from a patrol, eg Illagers
-   </details>
+       <details>
+          <summary>The list of possible spawning types is as follows: </summary>
+          
+          - `NATURAL` - Mobs that spawn from ticking chunks, ie ambient spawning
+          - `CHUNK_GENERATION` - Mobs that spawn immediately on chunk creation
+          - `SPAWNER` - Mobs that spawn from Spawner blocks
+          - `STRUCTURE` - Mobs that spawn from a structure
+          - `BREEDING` - Mobs that come from bred animals
+          - `MOB_SUMMONED` - Mobs that are summoned for backup, eg Evokers summoning Vex's
+          - `JOCKEY` - Mobs that ride other mobs, eg Skeleton riding a Spider
+          - `EVENT` - Mobs that spawn from an event, eg raids
+          - `CONVERSION` - Mobs that are being converted, eg Zombie Villager converting to Villager
+          - `REINFORCEMENT` - Mobs that are spawned for reinforcement, eg Zombies spawning more Zombies
+          - `TRIGGERED` - Mobs that come from a specific thing, eg Wardens spawning from a shrieker
+          - `BUCKET` - Mobs that come from buckets, eg Bucket of Fish
+          - `SPAWN_EGG` - Mobs that come from a spawn egg
+          - `COMMAND` - Mobs that come from a command, eg /summon
+          - `DISPENSER` - Mobs that come from a dispenser
+          - `PATROL` - Mobs that come from a patrol, eg Illagers
+        </details>
    
-     If the spawning types are not defined, the mod will default to checking the `CHUNK_GENERATION, JOCKEY, NATURAL, REINFORCEMENT,` and `PATROL` types, which should cover most typical use-cases. 
+       If the spawning types are not defined, the mod will default to checking the `CHUNK_GENERATION, JOCKEY, NATURAL, REINFORCEMENT,` and `PATROL` types, which should cover most typical use-cases. 
 
-     You normally wouldn't want to limit what mobs can be spawned from spawn eggs or commands, and it might be hard to justify an in-universe reason as to why certain mobs can't be properly bred or dropped from a bucket until an advancement is unlocked. Mob spawns from structures and spawners being disabled would allow those structures to be easily raided, like Pillager Outposts, Nether Fortresses and Ocean Monuments. Do what you want though! I'm not your mum!
+       You normally wouldn't want to limit what mobs can be spawned from spawn eggs or commands, and it might be hard to justify an in-universe reason as to why certain mobs can't be properly bred or dropped from a bucket until an advancement is unlocked. Mob spawns from structures and spawners being disabled would allow those structures to be easily raided, like Pillager Outposts, Nether Fortresses and Ocean Monuments. Do what you want though! I'm not your mum!
 
 ---
 
