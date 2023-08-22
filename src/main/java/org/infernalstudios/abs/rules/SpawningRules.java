@@ -96,13 +96,15 @@ public class SpawningRules {
 		FilterRules include = FilterRules.empty();
 		FilterRules exclude = FilterRules.empty();
 
-		JsonObject json = element.getAsJsonObject();
-		if (json.has("include")) {
-			include = FilterRules.decode(json.get("include"));
-		}
+		if (element != null) {
+			JsonObject json = element.getAsJsonObject();
+			if (json.has("include")) {
+				include = FilterRules.decode(json.get("include"));
+			}
 
-		if (json.has("exclude")) {
-			exclude = FilterRules.decode(json.get("exclude"));
+			if (json.has("exclude")) {
+				exclude = FilterRules.decode(json.get("exclude"));
+			}
 		}
 
 		return new SpawningRules(include, exclude);
