@@ -34,7 +34,7 @@ The [provided example](#example-file), `minecraft:story/enter_the_end`, points t
 
 ###### This should also work for modded advancements too. For example, the mod Mining Master adds the advancement 'A Sword of Fire and Ice'. In this instance, we'd want to target the file `data/miningmaster/advancements/miningmaster/a_sword_of_ice_and_fire.json`, so, format it as `"miningmaster:a_sword_of_fire_and_ice"`
 
-##
+<hr>
 
 ##### Priority
 
