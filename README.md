@@ -46,7 +46,7 @@ If undefined, defaults to `1000`
 
 <h5>
 <details>
-  <summary>Priority Claiming: <h3></summary>
+  <summary>Priority Claiming:</summary>
 
   ***<h3><span style="color:red">Only use if you know what you're doing!</span><h4>***
 
@@ -62,6 +62,7 @@ If undefined, defaults to `1000`
   For example, a rule with priority `50` that wants to claim the priority, will, when compared against a rule with priority `100`; the resulting rule will use `50` instead of `100`. If both rules claim priority, it again uses the higher one of the two.
 
 </details>
+</h5>
 
 ---
 
