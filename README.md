@@ -10,7 +10,7 @@ On it's own, ABS does nothing. To begin, you'll need to make a datapack! In this
 
 From here, you can start writing JSON files that will control mob spawning!
 
-###### Please familiarize yourself with the JSON language and ensure that you are editing your files with a program that can read and catch errors in them, such as VSCode. Or use [An Online Json Verifier](https://jsonlint.com/) if needed. If your datapack doesn't work, it's likely down to a small formatting error that can be easily caught and fixed with the appropriate file editor!
+###### Please familiarize yourself with the JSON language and ensure that you are editing your files with a program that can read and catch errors in them, such as VSCode, or use [An Online Json Verifier](https://jsonlint.com/) if needed. If your datapack doesn't work, it's likely down to a small formatting error that can be easily caught and fixed with the appropriate file editor!
 
 You can make any number of JSON files, and those files can have any number of entries, though you only really *need* one file to do anything.
 
@@ -78,9 +78,9 @@ One or both of these need to be defined for the rule to take effect. Technically
 
  - ##### Filter Rules
    - ###### Include/Exclude
-     - `include`: What mobs excplicitly will spawn with/without the defined advancement.
+     - `include`: What mobs can spawn with/without the defined advancement.
    
-     - `exclude`: What mobs excplicitly won't spawn with/without the defined advancement.
+     - `exclude`: What mobs explicitly won't spawn with/without the defined advancement.
 
    - ###### Entities
      - An array of `ResourceLocation/Identifier` entities that will/won't spawn with/without the advancement!
